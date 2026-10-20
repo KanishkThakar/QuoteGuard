@@ -1,0 +1,7 @@
+{
+  "source": "https://api.frankfurter.dev/v2/rate/INR/USD?providers=ecb",
+  "capture_time_utc": "2026-10-12T16:13:40.703230+00:00",
+  "sha256": "4d1a8f5f449bc27de041e89aec5ba27b076919abcd3f2660ba09137eab9b86c0",
+  "purpose": "Original reference rate response; used by recorded-response benchmarks. No synthetic rate or added delay.",
+  "capture_time_basis": "Filesystem modification time at completion of the original curl capture."
+}
