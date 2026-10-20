@@ -1,0 +1,31 @@
+
+> quoteguard-web@1.0.0 test:e2e
+> playwright test
+
+
+Running 18 tests using 1 worker
+
+(node:19639) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19639) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/deep.spec.ts:54:1 › new quotation cancellation and account switching clear owner data (2.1s)
+  ✓   2 tests/deep.spec.ts:86:1 › stale prices, conflicting editor save, cancellation recovery and scenarios (2.2s)
+  ✓   3 tests/deep.spec.ts:133:1 › non-JSON server failure is recoverable and never crashes the page (1.7s)
+  ✓   4 tests/deep.spec.ts:158:1 › registration, invalid login, empty workspace and duplicate username (1.4s)
+  ✓   5 tests/deep.spec.ts:199:1 › accessibility and responsive layout across workspace screens (3.8s)
+  ✓   6 tests/deep.spec.ts:288:1 › zero revenue, archive filtering, search and revision recovery (1.9s)
+  ✓   7 tests/refinement.spec.ts:48:1 › discovery: client, currency, ID, sorting and recovery from no matches (882ms)
+  ✓   8 tests/refinement.spec.ts:91:1 › command selection, no-result arrow keys, focus containment and restoration (631ms)
+  ✓   9 tests/refinement.spec.ts:122:1 › responsive cards, WCAG 2.2 scans, reduced motion and screenshots (2.0s)
+  ✓  10 tests/refinement.spec.ts:173:1 › dashboard continues a draft and directs attention to a below-target quote (1.4s)
+  ✓  11 tests/refinement.spec.ts:203:1 › password visibility is explicit and skip link reaches the workspace (768ms)
+  ✓  12 tests/studio.spec.ts:63:1 › keyboard search, empty results, client editing and frozen client details (1.1s)
+  ✓  13 tests/studio.spec.ts:106:1 › margin preview is read-only, applied draft is recalculated and frozen preview stays frozen (1.2s)
+  ✓  14 tests/studio.spec.ts:153:1 › portfolio totals, studio screenshots, responsive layout and accessibility including modal and planner (2.4s)
+  ✓  15 tests/topic6.spec.ts:18:1 › cache lifecycle shows actual results without invented missing timing (6.1s)
+  ✓  16 tests/topic6.spec.ts:46:1 › 409 exposes explicit reload and the next calculation succeeds (1.2s)
+  ✓  17 tests/topic6.spec.ts:60:1 › source editing shows stale state and recomputes through UI (1.2s)
+  ✓  18 tests/workflow.spec.ts:6:1 › owner quotation workflow, cache experiments, frozen export and mobile (7.6s)
+
+  18 passed (49.8s)
