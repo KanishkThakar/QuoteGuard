@@ -199,6 +199,7 @@ test("registration, invalid login, empty workspace and duplicate username", asyn
 test("accessibility and responsive layout across workspace screens", async ({
   page,
 }) => {
+  fs.mkdirSync(output, { recursive: true });
   await page.emulateMedia({ reducedMotion: "reduce" });
   const results: any[] = [];
   const layout: any[] = [];
