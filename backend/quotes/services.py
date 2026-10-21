@@ -1,4 +1,4 @@
-import hashlib, json, time
+import hashlib, json, time, uuid
 from decimal import Decimal
 from django.conf import settings
 from django.db import transaction
@@ -52,8 +52,15 @@ def calculation_key(q, v, data, rate):
 
 
 def evaluate(q, refresh=False):
+    request_id = uuid.uuid4().hex
     if q.status == "finalised":
-        return {**q.snapshot, "calculation_cache": "snapshot"}
+        fingerprint = hashlib.sha256(json.dumps(q.snapshot, sort_keys=True, default=str).encode()).hexdigest()
+        return {**q.snapshot, "calculation_cache": "snapshot", "request_trace": {
+            "request_id": request_id, "quote_id": q.id, "input_version": q.version,
+            "decision": "snapshot", "cache_key": None, "result_key": None,
+            "provider_called": False, "calculation_executed": False,
+            "snapshot_sha256": fingerprint,
+        }}
     if q.status != "draft":
         raise ValueError(
             "Archived versions cannot be recalculated. Create a draft revision."
@@ -70,6 +77,9 @@ def evaluate(q, refresh=False):
         )
     calculation_start = time.perf_counter()
     k = calculation_key(q, v, data, rate)
+    lookup_key = k
+    lookup_version = v
+    stored = False
     result = cache.get(k)
     if result is not None and (
         result.get("calculation_version") != VERSION
@@ -104,7 +114,7 @@ def evaluate(q, refresh=False):
                     changed(q, "Suggested price adopted: draft input version advanced")
             k = calculation_key(q, v, data, rate)
         if Quote.objects.filter(id=q.id, version=v, status="draft").exists():
-            cache.set_value(k, result, settings.CALC_TTL)
+            stored = cache.set_value(k, result, settings.CALC_TTL)
     calculation_duration = (time.perf_counter() - calculation_start) * 1000
     cache.metric(
         q.owner_id,
@@ -114,6 +124,15 @@ def evaluate(q, refresh=False):
     prior = q.last_calculation
     result = {
         **result,
+        "request_trace": {
+            "request_id": request_id, "quote_id": q.id,
+            "lookup_input_version": lookup_version, "input_version": v,
+            "cache_key": lookup_key, "result_key": k,
+            "rate_version": rate["version"], "rate_cache": rate["cache"],
+            "decision": "hit" if hit else "miss",
+            "provider_called": rate["cache"] in {"miss", "refresh"},
+            "calculation_executed": not hit, "cache_written": bool(stored),
+        },
         "rate_provenance": rate,
         "calculation_cache": "hit" if hit else "miss",
         "calculation_ttl": cache.ttl(k),

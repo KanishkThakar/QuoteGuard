@@ -24,6 +24,12 @@ Choose **Explore demo workspace** on the sign-in page to open the real synthetic
 
 For ma'am: follow the [minute-by-minute presentation script](docs/demo-script.md), including the preflight, exact clicks, speaking cues, member handoffs and five-minute question rehearsal. The main story is: **a freelancer changes a project cost; the old cached answer becomes stale; a fresh calculation protects the margin while the signed-off quotation remains frozen.**
 
+## Interactive cache replay
+
+**Cache Lab → Follow the answer** explains a real request through five clickable stages: **Request → key/version → hit or miss → provider/calculation → response**. Run a draft, change its first cost inside the lab, save the new input version, then run twice to observe the new-key miss followed by a hit. Expand the actual request history to inspect the keys and server receipt. A separate finalised-quotation panel pins and verifies the full snapshot SHA-256, proving the signed-off price stays fixed after draft edits.
+
+Old keys become unreachable by the updated draft and expire through TTL; they are not necessarily deleted immediately. Rate-cache and calculation-cache decisions are separate. The walkthrough explains a completed response, and the rate version is resolved before the calculation key. Observed timings are not a controlled benchmark or a guaranteed speedup. [Exact speaking cues and clicks](docs/demo-script.md#interactive-request-replay-topic-6-centerpiece).
+
 ## Assignment requirements and evidence
 
 Checked against the supplied *IMAP_Group_Project_Topics_BTech.docx*, Topic 6 and its submission notes.

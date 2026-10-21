@@ -77,3 +77,40 @@ test("source editing shows stale state and recomputes through UI",async({page})=
   await expect(page.getByRole("heading",{name:"The pricing breakdown"})).toBeVisible();
   await page.screenshot({path:output+"/source-recalculated.png",fullPage:true});
 });
+
+test("interactive replay shows source invalidation and a fixed finalised snapshot", async ({page}) => {
+  const {quote,headers} = await setup(page);
+  const finalise = await page.request.post(`/api/quotes/${quote.id}/finalise/`, {data:{},headers});
+  expect(finalise.ok()).toBeTruthy();
+  const revision = await page.request.post(`/api/quotes/${quote.id}/duplicate/`, {data:{},headers});
+  expect(revision.ok()).toBeTruthy();
+  await page.reload();
+  await page.getByRole("button",{name:"Cache Lab",exact:true}).click();
+  const replay = page.getByRole("region",{name:"Interactive cache replay"});
+  await replay.getByRole("button",{name:"Pin finalised snapshot"}).click();
+  await expect(replay).toContainText("Baseline captured");
+  await replay.getByRole("button",{name:"Run real request"}).click();
+  await expect(replay.getByRole("status")).toContainText("completed: miss");
+  await replay.getByRole("button",{name:"Run real request"}).click();
+  await expect(replay.getByRole("status")).toContainText("completed: hit");
+  await replay.getByLabel("New first-item unit cost").fill("1500");
+  await replay.getByRole("button",{name:"Save cost & advance version"}).click();
+  await expect(replay.getByRole("status")).toContainText("input version 1 → 2");
+  await replay.getByRole("button",{name:"Run real request"}).click();
+  await expect(replay.getByRole("status")).toContainText("completed: miss");
+  await replay.getByRole("button",{name:"04 Provider / calculation"}).click();
+  await expect(replay).toContainText("External provider called: no. Pricing calculation executed: yes.");
+  await replay.getByRole("button",{name:"Run real request"}).click();
+  await expect(replay.getByRole("status")).toContainText("completed: hit");
+  await replay.getByRole("button",{name:"Verify frozen snapshot"}).click();
+  await expect(replay).toContainText("Verified unchanged: full snapshot SHA-256 matches.");
+  await replay.getByText("Actual request history (4)",{exact:true}).click();
+  await expect(replay.getByRole("listitem")).toHaveCount(4);
+  for (const width of [320,390,768,1440]) {
+    await page.setViewportSize({width,height:1000});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  }
+  expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+  fs.mkdirSync(output,{recursive:true});
+  await page.screenshot({path:output+"/interactive-replay.png",fullPage:true});
+});

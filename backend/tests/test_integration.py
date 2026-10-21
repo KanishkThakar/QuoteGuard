@@ -757,3 +757,68 @@ def test_calculation_rejects_concurrent_rate_refresh(setup, monkeypatch):
     assert "Reference rate changed" in response.data["detail"]
     q.refresh_from_db()
     assert q.last_calculation is None
+
+
+def test_cache_replay_records_real_keys_versions_and_work(setup):
+    _, _, _, q, api = setup
+    first = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    trace = first["request_trace"]
+    assert trace["decision"] == "miss"
+    assert trace["provider_called"] and trace["calculation_executed"]
+    assert trace["lookup_input_version"] + 1 == trace["input_version"]
+    assert trace["cache_key"] != trace["result_key"]  # suggested price adoption
+    second = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    assert second["request_trace"]["decision"] == "hit"
+    assert not second["request_trace"]["provider_called"]
+    assert not second["request_trace"]["calculation_executed"]
+    assert second["request_trace"]["cache_key"] == trace["result_key"]
+    assert second["request_trace"]["request_id"] != trace["request_id"]
+    old_version = second["input_version"]
+    response = api.patch(f"/api/quotes/{q.id}/", {"version": old_version, "costs": [
+        {"description": "Changed", "quantity": "1", "unit_cost": "72000"}
+    ]}, format="json")
+    assert response.status_code == 200
+    assert response.json()["version"] == old_version + 1
+    third = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    assert third["request_trace"]["decision"] == "miss"
+    assert third["request_trace"]["cache_key"] != second["request_trace"]["result_key"]
+    assert not third["request_trace"]["provider_called"]
+    assert third["request_trace"]["calculation_executed"]
+    fourth = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    assert fourth["request_trace"]["decision"] == "hit"
+    assert fourth["gross_price"] == first["gross_price"]
+    assert fourth["cost"] == "72000.00"
+
+
+def test_cache_replay_snapshot_fingerprint_is_fixed(setup):
+    _, other, _, q, api = setup
+    assert api.post(f"/api/quotes/{q.id}/finalise/", {}, format="json").status_code == 200
+    baseline = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    revised = api.post(f"/api/quotes/{q.id}/duplicate/", {}, format="json")
+    assert revised.status_code == 201
+    revision_id = revised.json()["id"]
+    assert api.patch(f"/api/quotes/{revision_id}/", {"costs": [
+        {"description": "Revision cost", "quantity": "1", "unit_cost": "80000"}
+    ]}, format="json").status_code == 200
+    api.post(f"/api/quotes/{revision_id}/calculate/", {}, format="json")
+    after = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    assert baseline["request_trace"]["snapshot_sha256"] == after["request_trace"]["snapshot_sha256"]
+    assert after["request_trace"]["decision"] == "snapshot"
+    assert not after["request_trace"]["provider_called"]
+    assert not after["request_trace"]["calculation_executed"]
+    assert after["request_trace"]["cache_key"] is None
+    assert baseline["gross_price"] == after["gross_price"]
+    api.force_authenticate(other)
+    assert api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").status_code == 404
+
+
+def test_cache_replay_does_not_claim_failed_cache_write(setup, monkeypatch):
+    _, _, _, q, api = setup
+    evaluate(q)  # warm the rate before disabling calculation storage
+    q.refresh_from_db()
+    cache.connection().delete(q.last_calculation["request_trace"]["result_key"])
+    monkeypatch.setattr(cache, "set_value", lambda *a, **kw: False)
+    receipt = api.post(f"/api/quotes/{q.id}/calculate/", {}, format="json").json()
+    assert receipt["request_trace"]["decision"] == "miss"
+    assert not receipt["request_trace"]["cache_written"]
+    assert receipt["request_trace"]["calculation_executed"]

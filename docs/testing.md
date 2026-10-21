@@ -55,3 +55,7 @@ uv run python scripts/check_redis_outage.py --base-url http://127.0.0.1:8782 --r
 Run the outage check after other tests finish. It deliberately stops the named container, checks fallback behavior and frozen snapshots, and restarts the container in a finally block. It validates that the container's loopback port matches REDIS_URL, and fails if restart health cannot be verified. Use the recorded server to avoid external requests. The load check uses an INR identity quote, 60 requests and five workers; it is not a production capacity estimate.
 
 Stop the recorded server and Vite with Ctrl+C. Stop only the dedicated test containers when finished. Keep data until evidence is saved; do not flush shared Redis or remove unrelated volumes.
+
+## Interactive cache replay regression
+
+`test_cache_replay_*` in `backend/tests/test_integration.py` verifies actual Redis keys, the one-time suggested-price version advance, unique request IDs, a cost edit causing a new-key miss, the next hit, separate provider/calculation work flags, failed Redis write reporting, owner isolation and fixed full-snapshot SHA-256 after revision edits. The browser test `interactive replay shows source invalidation and a fixed finalised snapshot` exercises the complete UI and audits accessibility and overflow at 320, 390, 768 and 1440 pixels. The local browser server uses the recorded original provider; no public API is load tested.

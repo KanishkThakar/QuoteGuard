@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import "./style.css";
+import { CacheReplay } from "./CacheReplay";
 import { ratioToPercent, percentToRatio } from "./percent";
 import { PortfolioInsights, QuickSearch, MarginPlanner } from "./StudioTools";
 export type Client = {
@@ -882,6 +883,7 @@ function App() {
                     : "Redis unavailable"}
                 </span>
               </div>
+              <CacheReplay quotes={quotes} request={api} onChanged={load} />
               <section className="cache-guide" aria-label="Cache experiment guide">
                 <div><span className="eyebrow">WATCH THE LIFECYCLE</span><h2>One lookup. Four things to learn.</h2>
                 <p>Run one step at a time. Each result comes from the server.</p></div>

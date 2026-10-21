@@ -59,3 +59,16 @@ The reproducible local recorded setup and safety checks are in `testing.md`. A s
 | Where is Django admin? | It is not enabled. Demonstrate the product UI. Superuser session checks run in the isolated test database; no shared privileged account is published. |
 
 Every member should rehearse the formula, one cache key, one race condition and one test. AI-assisted handoff files and commit attribution are not a substitute for comprehension or genuine contribution.
+
+## Interactive request replay (Topic 6 centerpiece)
+
+Open **Cache Lab → Follow the answer**. Select an editable draft with a cost and a separate finalised quotation. This edits actual synthetic demonstration records, so choose your rehearsal draft deliberately.
+
+1. **Sai:** click **Pin finalised snapshot**. Say: “This captures the SHA-256 of the entire signed-off PostgreSQL snapshot. We will verify it after changing our draft.”
+2. **Kanishk:** click **Run real request**, then click through **Request → Key / version → Hit or miss → Provider / calculation → Response** (or **Next stage**). Say: “This receipt comes from one completed authenticated server request. The key includes the owner, quote, input version, rate version, calculation version and input digest.” The first request can already hit a warm cache; do not describe it as cold unless the receipt says miss.
+3. **Dhruvil:** enter a different **New first-item unit cost**, then click **Save cost & advance version**. Point to the version arrow and **Obsolete key**. Say: “Changing the cost advances the input version. The previous key may still physically exist until its TTL expires, but this draft will no longer address it.”
+4. **Aarav:** click **Run real request**. Point to the actual MISS, new key and **Provider / calculation** stage. Say: “This calculation miss recomputes pricing. The reference rate may still hit its own cache, so a calculation miss does not necessarily call the external provider.”
+5. Click **Run real request** again. Show HIT and that pricing execution is skipped. Say: “Identical current inputs reuse the cached result. These are observed server durations, not a controlled benchmark or guaranteed speedup.” If Redis is unavailable or the rate/version changes, honestly explain the actual result and retry after recovery.
+6. **Sai:** click **Verify frozen snapshot**. Point to **Verified unchanged: full snapshot SHA-256 matches** and the fixed client price. Say: “Draft changes do not rewrite a finalised agreement. This response reads the stored snapshot and skips Redis, the provider and calculation.”
+
+Expand **Actual request history** and **Latest server receipt** if ma'am asks for evidence. Stage buttons are a logical explanation of a completed request, not a streamed trace: the rate lookup resolves the rate version before construction of the calculation key. Suggested-price adoption on a first calculation can itself advance the version; both lookup and result keys are recorded. The receipt contains no credentials. A concurrent edit can return a conflict; click **Reload latest quotations**, inspect the latest cost, then retry.
