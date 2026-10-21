@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-20T09:05:22.528922+00:00",
+  "kind": "Actual named local Redis outage; response provenance below identifies provider mode",
+  "container": "quoteguard-kanishk-redis-20261020",
+  "draft_quote_id": 57,
+  "health_during_outage": {
+    "database": "ok",
+    "redis": "unavailable",
+    "application": "ok"
+  },
+  "rate_provenance": {
+    "rate": "0.01044",
+    "requested_date": "latest",
+    "actual_date": "2026-10-12",
+    "previous_available_date": false,
+    "source": "Recorded original Frankfurter / ECB response; not live network latency",
+    "url": "https://api.frankfurter.dev/v2/rate/INR/USD?providers=ecb",
+    "fetched_at": "2026-10-12T16:13:40.703230+00:00",
+    "response_sha256": "4d1a8f5f449bc27de041e89aec5ba27b076919abcd3f2660ba09137eab9b86c0",
+    "response": "{\"date\":\"2026-10-12\",\"base\":\"INR\",\"quote\":\"USD\",\"rate\":0.01044}",
+    "version": "recorded-4d1a8f5f449bc27de041e89aec5ba27b076919abcd3f2660ba09137eab9b86c0",
+    "cache": "miss",
+    "ttl": null,
+    "redis_available": false,
+    "duration_ms": 1.7265839996980503
+  },
+  "calculation_succeeded_without_cache": true,
+  "health_after_restart": {
+    "database": "ok",
+    "redis": "ok",
+    "application": "ok"
+  },
+  "finalised_snapshots_unchanged": true
+}

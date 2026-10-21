@@ -1,0 +1,1648 @@
+{
+  "measured_at": "2026-10-20T09:00:15.265692+00:00",
+  "source_sha256": "4d1a8f5f449bc27de041e89aec5ba27b076919abcd3f2660ba09137eab9b86c0",
+  "experiment": "Actual loopback HTTP with a recorded original Frankfurter response; not live public API latency",
+  "environment": {
+    "python": "3.13.14",
+    "django": "5.2.18",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "redis": "7.4.7"
+  },
+  "warmups_per_condition": 5,
+  "public_upstream_requests": 0,
+  "policy": "Same quote, payload and original rate bytes. Cache bypass retains authentication, persistence, locks and metrics. Cold eviction occurs before timing. No artificial delay. Only loopback servers started by this script are contacted.",
+  "conditions": {
+    "uncached": {
+      "samples": 100,
+      "median_ms": 13.231853999999998,
+      "p95_ms": 14.402875,
+      "rows": [
+        {
+          "elapsed_ms": 13.192792,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.072709,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.065417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.029208,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.246875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.328625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.308875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.109333,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.014625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.278083,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.096875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.347541,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.162917,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.149375,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.049917,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.192041,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.212792,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.094167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.216833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.937916,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.084125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.963583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.936792,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.93475,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.167042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.477542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.985958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.644084,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.103042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.891416,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.085708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.139625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.107,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.248417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.182709,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.839834,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.084583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.165166,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.981583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.392875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.9145,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.597958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.733458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.535,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.568459,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.068208,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.188542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.941042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.217667,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.000625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.879042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.026708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.369458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.392625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.777292,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.051458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.967667,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.81225,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.123,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.964791,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.575291,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.17775,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.379417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.96625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.249958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.856708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.160167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.345333,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.499875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.402875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.62,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.079291,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.9135,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.311125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.674458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.295125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.137333,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.288625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.550084,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.239833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.129666,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.23975,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.030458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.037167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.41675,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.628875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.974584,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.0405,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.727208,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.122167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.859792,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.936834,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.011584,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.519458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.500125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.154584,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.205209,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.293625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.04275,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 12.825625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        }
+      ],
+      "warmup_rows": [
+        {
+          "elapsed_ms": 15.508292,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.715125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.760875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.368916,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 13.33975,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        }
+      ],
+      "recorded_provider_calls_including_warmups": 105
+    },
+    "cold": {
+      "samples": 100,
+      "median_ms": 15.176021,
+      "p95_ms": 19.43825,
+      "rows": [
+        {
+          "elapsed_ms": 14.573625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.855167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.641958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.502542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.464125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.956541,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.175,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.754083,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.958166,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.615542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.762916,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.491166,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.36275,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.405542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.413458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.508583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.455666,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.579084,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.835709,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.667083,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.475083,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.244333,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.108542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.850458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.696416,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.655708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.976542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.533166,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.262208,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.622666,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.000375,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.43425,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 21.583167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 20.775167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.07225,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.210958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.177042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.153834,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.479667,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.394,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.7485,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.782958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.348583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 19.43825,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 18.740791,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.917167,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.953542,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.359708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 19.013833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.323625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.940042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.1115,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.621125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.086833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.234375,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 18.301292,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 21.02125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 20.906041,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 18.745,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.085,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.446,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.333875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.177417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.141291,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.222583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.929041,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.178625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.3865,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.9285,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.981833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.828417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.772958,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.030458,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.063625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.779,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.024583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.672625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.671666,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.650833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.491584,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.684125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.047708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.040708,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.845833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.144,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.112417,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.95675,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.413833,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 16.168959,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.966959,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.841083,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 19.0625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 20.742416,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.177709,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 17.559625,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 18.1435,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.595792,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.861583,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.885125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        }
+      ],
+      "warmup_rows": [
+        {
+          "elapsed_ms": 16.266416,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.113959,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 15.09875,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.808042,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        },
+        {
+          "elapsed_ms": 14.925125,
+          "calculation_cache": "miss",
+          "rate_cache": "miss"
+        }
+      ],
+      "recorded_provider_calls_including_warmups": 105
+    },
+    "warm": {
+      "samples": 100,
+      "median_ms": 12.9197705,
+      "p95_ms": 16.840917,
+      "rows": [
+        {
+          "elapsed_ms": 12.432667,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.636625,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.617208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.127708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.40025,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.745417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.679125,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.966667,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.638,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.406459,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.431625,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.400459,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.938917,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.75325,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.379875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.630208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.990833,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.262917,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.741334,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.56075,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.814209,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.749125,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.651334,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.645166,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.269084,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.367125,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.430625,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.131791,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.582417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.883083,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.448834,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.369875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.884417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.463208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.542125,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.9955,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.785875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.194292,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.709,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.987708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.503208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.662333,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 16.696708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 20.399,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 17.379041,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.409292,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.270167,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.024875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.995458,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.360292,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.077292,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 16.840917,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 17.253417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 18.530167,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 20.19375,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 14.000375,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.543708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.347625,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.205375,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.283833,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.223709,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.353208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.440958,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.159917,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.166667,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.078708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.909625,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.270209,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.14825,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.061084,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.240083,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.843333,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.908792,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.762667,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.530875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.796834,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.129667,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.929916,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.184334,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.481834,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.05875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.359542,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.147458,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.130041,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.43725,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.559375,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 15.630708,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.012417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.439958,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.632584,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.324584,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.307084,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.262208,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.104417,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.180792,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.1565,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.6655,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.451083,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.223333,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.067542,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        }
+      ],
+      "warmup_rows": [
+        {
+          "elapsed_ms": 12.599292,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.943458,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.796791,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 12.716583,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        },
+        {
+          "elapsed_ms": 13.115875,
+          "calculation_cache": "hit",
+          "rate_cache": "hit"
+        }
+      ],
+      "recorded_provider_calls_including_warmups": 0
+    }
+  },
+  "behavior_checks": {
+    "equivalent_financial_results": true,
+    "shortened_ttl_ms": 30,
+    "expiry_request": {
+      "elapsed_ms": 16.074,
+      "calculation_cache": "miss",
+      "rate_cache": "miss"
+    },
+    "source_change": {
+      "before_cost": "65000.00",
+      "after_cost": "70000.00",
+      "first": "miss",
+      "repeat": "hit"
+    }
+  },
+  "quote_id": 6,
+  "warm_vs_uncached_median_ratio": 1.0241554987373807,
+  "server_counters": {
+    "cached": {
+      "recorded_provider_calls": 107,
+      "public_upstream_requests": 0
+    },
+    "uncached": {
+      "recorded_provider_calls": 105,
+      "public_upstream_requests": 0
+    }
+  }
+}

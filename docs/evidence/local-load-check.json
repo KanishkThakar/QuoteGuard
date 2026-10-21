@@ -1,0 +1,437 @@
+{
+  "verified_at": "2026-10-20T09:02:14.014007+00:00",
+  "samples": 60,
+  "concurrency": 5,
+  "public_rate_requests": 0,
+  "synthetic_inputs": true,
+  "condition": "Warm INR identity calculation against configured loopback app",
+  "status_counts": {
+    "200": 60
+  },
+  "median_ms": 19.202957999368664,
+  "p95_ms": 22.631291998550296,
+  "max_ms": 23.69866700610146,
+  "rows": [
+    {
+      "status": 200,
+      "ms": 13.505625000107102,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 23.69866700610146,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.881207996746525,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 22.631291998550296,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 14.360707995365374,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.288916997727938,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.240666006226093,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 18.928958001197316,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.894124996615574,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.732582997879945,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.18620799551718,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.84120899415575,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.72487500461284,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.832709003821947,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 12.073958991095424,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.21970800322015,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.168957995134406,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.649666004814208,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 18.570999993244186,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 18.38508299260866,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.68770900403615,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.555167004000396,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.323999993503094,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 12.763083999743685,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 22.492667005280964,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.88416599528864,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 14.925458992365748,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 23.095040989574045,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.22524999140296,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.317083998117596,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.000041990191676,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.275709000998177,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.699375005671754,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.379999991040677,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.441125001525506,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.246250004158355,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.115874998737127,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.329333008499816,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 12.87129100819584,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.587250004406087,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 18.945374991744757,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.688374994671904,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.355458007543348,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 18.778000012389384,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.080208009341732,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.621292002033442,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 19.180709001375362,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.565749992267229,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.412582995253615,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 20.427082999958657,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.559957995312288,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 22.180166997713968,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.033291006460786,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.555083001847379,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 23.043875000439584,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 22.512542011099868,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 13.878958008717746,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 22.341417003190145,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 21.77279100578744,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    },
+    {
+      "status": 200,
+      "ms": 11.935250004171394,
+      "cache": "hit",
+      "rate_source": "Identity conversion",
+      "price": "1471.55"
+    }
+  ],
+  "limitation": "Bounded local smoke load only; does not estimate production capacity."
+}
