@@ -1,0 +1,36 @@
+name: Verify QuoteGuard
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16.13-alpine
+        env:
+          POSTGRES_DB: quoteguard
+          POSTGRES_USER: quoteguard
+          POSTGRES_PASSWORD: local-only-quoteguard
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U quoteguard" --health-interval 5s --health-retries 10
+      redis:
+        image: redis:7.4.7-alpine
+        ports: ["6379:6379"]
+    env:
+      DATABASE_PORT: "5432"
+      REDIS_URL: redis://127.0.0.1:6379/0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install uv==0.12.9
+      - run: uv sync --frozen
+      - run: uv run pytest -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.1'
+      - run: npm ci && npm run build && npm audit
+        working-directory: frontend
