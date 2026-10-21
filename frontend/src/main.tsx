@@ -883,7 +883,12 @@ function App() {
                     : "Redis unavailable"}
                 </span>
               </div>
-              <CacheReplay quotes={quotes} request={api} onChanged={load} />
+              <CacheReplay quotes={quotes} request={api} onChanged={async () => {
+                const epoch = workspaceEpoch.current;
+                await Promise.all([load(), api("lab/").then(data => {
+                  if (epoch === workspaceEpoch.current) setLab(data);
+                })]);
+              }} />
               <section className="cache-guide" aria-label="Cache experiment guide">
                 <div><span className="eyebrow">WATCH THE LIFECYCLE</span><h2>One lookup. Four things to learn.</h2>
                 <p>Run one step at a time. Each result comes from the server.</p></div>

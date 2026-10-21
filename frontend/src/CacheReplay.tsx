@@ -14,7 +14,7 @@ type Props = { quotes: Quote[]; request: (path: string, method?: string, body?: 
 export function CacheReplay({ quotes, request, onChanged }: Props) {
   const drafts = quotes.filter(q => q.status === "draft" && q.costs.length);
   const frozen = quotes.filter(q => q.status === "finalised");
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(String(drafts[0]?.id ?? ""));
   const draft = drafts.find(q => String(q.id) === selected) ?? drafts[0];
   const [receipt, setReceipt] = useState<Receipt | null>(null);
   const [history, setHistory] = useState<Receipt[]>([]);
@@ -24,7 +24,7 @@ export function CacheReplay({ quotes, request, onChanged }: Props) {
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const [snapshotId, setSnapshotId] = useState("");
+  const [snapshotId, setSnapshotId] = useState(String(frozen[0]?.id ?? ""));
   const frozenQuote = frozen.find(q => String(q.id) === snapshotId) ?? frozen[0];
   const [pinned, setPinned] = useState<Receipt | null>(null);
   const [verified, setVerified] = useState(false);
