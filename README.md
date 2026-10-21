@@ -18,7 +18,7 @@ These are responsibility assignments. The handoff packages contain AI-assisted w
 
 **[Open the live demo](https://quoteguard-snowy.vercel.app)** → **Explore demo workspace**. Vercel Hobby, Neon Free PostgreSQL and Upstash Free Redis; no paid plan or add-on was selected. [Release checks and limits](docs/deployment-verification.md).
 
-The release passed 1,206 backend tests, 19 local browser workflows and the same 19 workflows on the public HTTPS deployment. The live checks include mobile/accessibility, real reference-rate lookups, cache expiry/invalidation, PDF/CSV downloads and immutable finalised snapshots.
+The release passed 1,210 backend tests, six frontend unit tests, 20 local browser workflows and the same 20 workflows on the public HTTPS deployment. The live checks include mobile/accessibility, real reference-rate lookups, cache expiry/invalidation, PDF/CSV downloads and immutable finalised snapshots.
 
 Choose **Explore demo workspace** on the sign-in page to open the real synthetic demo account, or register a separate account for your own rehearsal. The demonstration includes client creation, fee-aware pricing, hypothetical scenarios, margin planning, search, cache experiments, finalisation, PDF/CSV downloads and revisions. The shared demo may contain other rehearsals; give your new quotation a unique title.
 
