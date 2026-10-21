@@ -9,8 +9,8 @@ def client_for(url):
     return redis.Redis.from_url(
         url,
         decode_responses=True,
-        socket_connect_timeout=0.3,
-        socket_timeout=0.3,
+        socket_connect_timeout=settings.REDIS_SOCKET_TIMEOUT,
+        socket_timeout=settings.REDIS_SOCKET_TIMEOUT,
         max_connections=30,
     )
 

@@ -6,18 +6,49 @@
 
 | Member | Responsibility |
 |---|---|
-| Kanishk Thakkar | Core backend, Decimal pricing, Redis behavior, authentication, data integrity and integration |
+| Kanishk Thakar | Core backend, Decimal pricing, Redis behavior, authentication, data integrity and integration |
 | Dhruvil Shah | Frontend workflows, Cache Lab, conflict recovery and screenshots |
 | Aarav Sheth | Browser regression tests, HTTP benchmarks, load/outage checks and evidence |
 | Sai Sankhe | Docker setup, documentation, research explanations and demonstration |
 
 These are responsibility assignments. The handoff packages contain AI-assisted work and inherited project files; each member must review, understand and verify their files before making genuine commits. One repository is used for the final group submission. No individual authorship is inferred from this table.
 
+
+## Live demonstration and presentation
+
+**[Open the live demo](https://quoteguard-snowy.vercel.app)** → **Explore demo workspace**. Vercel Hobby, Neon Free PostgreSQL and Upstash Free Redis; no paid plan or add-on was selected. [Release checks and limits](docs/deployment-verification.md).
+
+The release passed 1,206 backend tests, 19 local browser workflows and the same 19 workflows on the public HTTPS deployment. The live checks include mobile/accessibility, real reference-rate lookups, cache expiry/invalidation, PDF/CSV downloads and immutable finalised snapshots.
+
+Choose **Explore demo workspace** on the sign-in page to open the real synthetic demo account, or register a separate account for your own rehearsal. The demonstration includes client creation, fee-aware pricing, hypothetical scenarios, margin planning, search, cache experiments, finalisation, PDF/CSV downloads and revisions. The shared demo may contain other rehearsals; give your new quotation a unique title.
+
+For ma'am: follow the [minute-by-minute presentation script](docs/demo-script.md), including the preflight, exact clicks, speaking cues, member handoffs and five-minute question rehearsal. The main story is: **a freelancer changes a project cost; the old cached answer becomes stale; a fresh calculation protects the margin while the signed-off quotation remains frozen.**
+
+## Assignment requirements and evidence
+
+Checked against the supplied *IMAP_Group_Project_Topics_BTech.docx*, Topic 6 and its submission notes.
+
+| Required item | Where to inspect it |
+|---|---|
+| Redis-cached endpoint | `POST /api/quotes/{id}/calculate/`, `backend/quotes/rates.py`, `backend/quotes/services.py` |
+| Before/after endpoint benchmark | `scripts/benchmark_http.py`, [benchmark method](docs/testing.md), raw `docs/evidence/http-benchmark.json` |
+| Invalidation after source change | Edit costs/fees then save; inspect stale notice and new version; [architecture](docs/architecture.md) and `frontend/tests/topic6.spec.ts` |
+| Hit versus miss | Research answers below and Cache Lab cold/warm experiment |
+| TTL and invalidation difficulty | Research answers below; real three-second expiry demonstration |
+| Django per-view versus low-level caching | Research answers below; implementation uses direct redis-py explicitly |
+| Frankfurter API | Real ECB-filtered rates, source date, hash and bounded failure handling |
+| Architecture, setup, screenshots | This README and the linked documents |
+| Ten-minute live demo plus five-minute questions | [Presentation script](docs/demo-script.md) |
+| One group repository and real contributions | [Shared repository](https://github.com/KanishkThakar/QuoteGuard), responsibility table and actual commit history |
+| Free tiers, no committed secrets, no public load test | [Deployment procedure](docs/deployment.md), `.env.example`, `.gitignore`, guarded loopback benchmarks |
+
+Role assignments are not a claim of percentage contribution. Every member must explain all parts, review their work, and make genuine contributions; do not fabricate commit identity or contributions.
+
 ## Architecture
 
 ```mermaid
 flowchart LR
-  UI[React and TypeScript] --> Proxy[Same-origin nginx or Vite proxy]
+  UI[React and TypeScript] --> Proxy[Same-origin Vercel routing or local proxy]
   Proxy --> API[Django and DRF]
   API --> DB[(PostgreSQL snapshots and ownership)]
   API --> Cache[(Redis rates and calculations)]
@@ -41,7 +72,7 @@ Open the address printed by the script (default [localhost port 8780](http://127
 
 ## Screenshots
 
-Actual browser captures with synthetic business records and the original recorded INR/USD provider response. These images are included in Dhruvil's package; they are not mockups or current market-rate observations.
+Actual browser captures with synthetic business records and the original recorded INR/USD provider response. They are real browser renders with synthetic business inputs, not mockups or current market-rate observations.
 
 ![Dashboard](docs/images/dashboard-desktop.png)
 ![Cold lookup](docs/images/cache-cold.png)
@@ -69,7 +100,7 @@ The team should explain these answers in its own words during the demonstration 
 
 ## Verification and measurements
 
-See [current verification](docs/team-verification.md), [architecture](docs/architecture.md) and [the demo script](docs/demo-script.md). Historical verification files describe earlier runs and must not be presented as new measurements.
+See [deployment verification](docs/deployment-verification.md), [earlier team verification](docs/team-verification.md), [architecture](docs/architecture.md) and [the demo script](docs/demo-script.md). Historical verification files describe earlier runs and must not be presented as new measurements. The [deployment verification record](docs/deployment-verification.md) tracks the current release separately.
 
 The HTTP benchmark uses the same authenticated endpoint, quote and request data in uncached, cold and warm conditions. It substitutes the hash-verified original Frankfurter response inside two local server processes. It makes no public upstream requests, adds no delay, and reports raw samples separately from warmups. These timings describe local HTTP with a recorded upstream, not live Frankfurter network latency.
 
@@ -92,6 +123,21 @@ For browser runs with zero live provider calls, use the recorded server setup in
 
 - A 409 conflict means the quote changed; use **Reload latest draft**. While editing, **Discard edits and reload** explicitly drops unsaved changes.
 - A failed provider request produces an error without invented rates. Redis failure permits bounded direct provider work; no stale fallback is implied.
-- The demo accounts, settings and passwords are local only. Before deployment, replace secrets, disable DEBUG, configure hosts, HTTPS and secure cookies.
+- The shared demo accounts contain synthetic records only; do not enter personal or customer data. Hosted deployment requires a random secret, DEBUG=0, persistent PostgreSQL, TLS Redis, HTTPS and secure cookies. No privileged account is publicly exposed.
 - Never load test a public API. Load checks are loopback-only; the outage check requires an explicit local Redis container and verifies its published port before stopping it.
 - Use free services only. Keep `.env`, credentials, dependencies, caches and generated test artifacts out of commits.
+
+## Production deployment
+
+[Vercel Services](https://vercel.com/docs/services) (currently Beta) routes the React/Vite frontend and Django backend under one origin. Hosted PostgreSQL stores users, clients, audit events and immutable snapshots; hosted TLS Redis stores expendable rate/calculation caches and owned locks. Vercel does not run the local Compose database services for you. See [deployment steps and environment variables](docs/deployment.md).
+
+The cloud configuration rejects a development secret, DEBUG enabled, a missing persistent PostgreSQL URL, and a non-TLS Redis URL. HTTPS redirection, secure session/CSRF cookies, HSTS and clickjacking headers protect the deployed origin. PostgreSQL migrations and the idempotent synthetic seed run at deployment build time. Preview environments must have their own credentials and isolated data; do not connect an arbitrary preview to the demo database.
+
+Django's admin dashboard is not installed or routed. Superuser authentication is tested using temporary test-database accounts; no shared administrator password is exposed. The classroom presentation uses the product UI and its Cache Lab.
+
+## Primary sources
+
+- [Django cache framework](https://docs.djangoproject.com/en/5.2/topics/cache/) — per-view and value-level caching.
+- [Redis distributed lock guidance](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/) — ownership tokens and bounded leases. QuoteGuard uses one Redis instance; it does not claim Redlock's multi-node guarantees.
+- [Frankfurter API](https://frankfurter.dev/) — currency pair endpoints, source dates and provider filtering. QuoteGuard requests `providers=ecb`.
+- [Django deployment checklist](https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/) and [Django on Vercel](https://vercel.com/docs/frameworks/full-stack/django) — hosted runtime and production configuration.

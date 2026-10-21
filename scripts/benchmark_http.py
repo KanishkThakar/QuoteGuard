@@ -51,7 +51,7 @@ def main():
     for port in [args.cached_port, args.uncached_port]:
         with socket.socket() as sock:
             sock.bind(("127.0.0.1", port))
-    work = ROOT.parent / "work/http-benchmark"
+    work = Path(os.environ.get("QUOTEGUARD_WORK", str(ROOT.parent / "work/http-benchmark")))
     work.mkdir(parents=True, exist_ok=True)
     servers, logs = [], []
     report = {"measured_at": datetime.now(timezone.utc).isoformat(), "source_sha256": provider.sha256,

@@ -1228,12 +1228,16 @@ function Login({
               : "New here? Create an account"}
           </button>
           <div className="demo-note">
-            <strong>Local demonstration</strong>
+            <strong>Explore the demonstration</strong>
             <p>
               Synthetic records only.
               <br />
               <code>demo</code> / <code>DemoQuoteGuard!2026</code>
             </p>
+            <button type="button" className="secondary full" disabled={busy}
+              onClick={() => onSubmit("demo", "DemoQuoteGuard!2026", false)}>
+              Explore demo workspace <ArrowUpRight size={18} />
+            </button>
           </div>
         </div>
       </section>

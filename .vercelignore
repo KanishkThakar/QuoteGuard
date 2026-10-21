@@ -1,0 +1,16 @@
+.git
+.venv
+**/node_modules
+**/dist
+**/__pycache__
+.pytest_cache
+.env*
+!.env.example
+docs/images
+docs/evidence
+backend/tests
+frontend/tests
+staticfiles
+
+.agents
+skills-lock.json

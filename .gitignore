@@ -10,6 +10,11 @@ dist/
 playwright-report/
 test-results/
 .DS_Store
+staticfiles/
+.vercel/
+.env.local
 *.tsbuildinfo
 
 .ruff_cache/
+.vercel
+.env*
