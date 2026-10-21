@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16.13-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-quoteguard}
+      POSTGRES_USER: ${POSTGRES_USER:-quoteguard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-only-quoteguard}
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  redis:
+    image: redis:7.4.7-alpine
+    command: redis-server --maxmemory 128mb --maxmemory-policy volatile-lru
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  backend:
+    build: .
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-local-development-only-change-me}
+      DEBUG: ${DEBUG:-1}
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-quoteguard}
+      POSTGRES_USER: ${POSTGRES_USER:-quoteguard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-only-quoteguard}
+      REDIS_URL: redis://redis:6379/0
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1,backend}
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+      RATE_LATEST_TTL: ${RATE_LATEST_TTL:-3600}
+      RATE_HISTORY_TTL: ${RATE_HISTORY_TTL:-604800}
+      CALC_TTL: ${CALC_TTL:-900}
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    command: sh -c "python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/')"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  web:
+    build: ./frontend
+    ports: ["127.0.0.1:${WEB_PORT:-8780}:80"]
+    depends_on:
+      backend: {condition: service_healthy}
+volumes:
+  postgres_data:
