@@ -62,6 +62,7 @@ if os.environ.get("DATABASE_URL"):
 elif ON_VERCEL:
     raise ImproperlyConfigured("Set a persistent PostgreSQL DATABASE_URL on Vercel.")
 REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication"
     ],
