@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import "./style.css";
+import { ratioToPercent, percentToRatio } from "./percent";
 import { PortfolioInsights, QuickSearch, MarginPlanner } from "./StudioTools";
 export type Client = {
   id: number;
@@ -1502,11 +1503,11 @@ function Editor({
                   min="0"
                   max="99.9999"
                   step=".0001"
-                  value={Number(q.target_margin) * 100}
+                  value={ratioToPercent(q.target_margin)}
                   onChange={(e) =>
                     update(
                       "target_margin",
-                      String(Number(e.target.value) / 100),
+                      percentToRatio(e.target.value),
                     )
                   }
                 />
@@ -1518,9 +1519,9 @@ function Editor({
                   min="0"
                   max="99.9999"
                   step=".0001"
-                  value={Number(q.fee_percent) * 100}
+                  value={ratioToPercent(q.fee_percent)}
                   onChange={(e) =>
-                    update("fee_percent", String(Number(e.target.value) / 100))
+                    update("fee_percent", percentToRatio(e.target.value))
                   }
                 />
               </Field>
