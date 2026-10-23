@@ -2125,3 +2125,208 @@ td > button {
 .cache-replay button:disabled { opacity: .5; cursor: not-allowed; }
 @media(max-width: 760px) { .replay-heading, .replay-controls { flex-direction: column; align-items: stretch; } .replay-stages { grid-template-columns: 1fr 1fr; } .replay-experiments { grid-template-columns: 1fr; } .replay-detail { padding: 16px; } }
 .cache-replay button:not(.replay-stage):not(.primary) { border: 1px solid #aebda3; background: #fff; color: #193d2c; border-radius: 8px; padding: 10px 14px; font-weight: 600; }
+
+
+/* Negotiation desk: preview inputs and server-calculated outcome. */
+.deal-stress {
+  margin: 24px 0;
+  border: 1px solid var(--line, #dce3e6);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  color: #182d32;
+}
+.deal-stress header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  background: #edf3ef;
+}
+.deal-stress .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 750;
+}
+.deal-stress h2 {
+  font-size: clamp(23px, 3vw, 34px);
+  letter-spacing: -0.04em;
+  margin: 12px 0;
+}
+.deal-stress p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+.stress-preview {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 12px;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 24px;
+}
+.stress-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.stress-controls {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.stress-controls label {
+  display: block;
+  font-size: 14px;
+}
+.stress-controls label span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.stress-controls input[type="range"] {
+  width: 100%;
+  accent-color: #236449;
+  cursor: pointer;
+  min-height: 24px;
+}
+.deal-stress .stress-hint {
+  font-size: 12px;
+  color: #536768;
+  margin: 0;
+}
+.stress-controls button {
+  align-self: flex-start;
+}
+.stress-outcome {
+  padding: 28px;
+  background: #f6f8f7;
+  border-left: 1px solid #dce3e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stress-outcome.protected {
+  background: #e7f4e9;
+  color: #174d32;
+}
+.stress-outcome.below_target {
+  background: #fff4dd;
+  color: #724c08;
+}
+.stress-outcome.loss {
+  background: #ffebe7;
+  color: #8a3025;
+}
+.stress-margin {
+  font-size: clamp(40px, 6vw, 68px);
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+  margin-top: 16px;
+}
+.stress-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.stress-numbers small,
+.stress-rescue small {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.stress-numbers strong {
+  font-size: 18px;
+}
+.stress-empty {
+  max-width: 310px;
+  margin: auto;
+}
+.stress-empty h3 {
+  font-size: 23px;
+  letter-spacing: -0.03em;
+}
+.stress-rescue {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 26px 28px;
+  border-top: 1px solid #dce3e6;
+}
+.stress-rescue h3 {
+  font-size: 19px;
+  margin: 10px 0;
+}
+.stress-rescue strong {
+  display: block;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+.stress-rescue span:not(.eyebrow) {
+  display: block;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.stress-engine {
+  padding: 18px 28px;
+  border-top: 1px solid #dce3e6;
+  font-size: 12px;
+}
+.stress-engine summary {
+  cursor: pointer;
+  font-weight: 650;
+  padding: 8px 0;
+}
+.stress-engine dl {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 10px;
+}
+.stress-engine dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: monospace;
+}
+.deal-stress footer {
+  padding: 14px 28px;
+  border-top: 1px solid #dce3e6;
+  font-size: 11px;
+  color: #536768;
+  line-height: 1.6;
+}
+@media (max-width: 720px) {
+  .deal-stress header {
+    flex-direction: column;
+  }
+  .stress-layout,
+  .stress-rescue {
+    grid-template-columns: 1fr;
+  }
+  .stress-outcome {
+    border-left: 0;
+    border-top: 1px solid #dce3e6;
+  }
+  .stress-engine dl {
+    grid-template-columns: 1fr;
+  }
+  .stress-engine dd {
+    margin-bottom: 8px;
+  }
+  .stress-controls,
+  .stress-outcome,
+  .deal-stress header,
+  .stress-rescue {
+    padding: 22px;
+  }
+}
+
+.deal-stress strong { overflow-wrap: anywhere; }

@@ -1,3 +1,4 @@
+import { DealStressTest } from "./DealStressTest";
 import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -1706,6 +1707,9 @@ function Detail({
       )}
       {c ? (
         <>
+          {q.status !== "archived" && (
+            <DealStressTest quote={q} request={(values) => api(`quotes/${q.id}/stress/`, "POST", values)} />
+          )}
           {q.status !== "archived" && (
             <MarginPlanner
               pending={busy}

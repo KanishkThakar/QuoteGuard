@@ -30,6 +30,10 @@ For ma'am: follow the [minute-by-minute presentation script](docs/demo-script.md
 
 Old keys become unreachable by the updated draft and expire through TTL; they are not necessarily deleted immediately. Rate-cache and calculation-cache decisions are separate. The walkthrough explains a completed response, and the rate version is resolved before the calculation key. Observed timings are not a controlled benchmark or a guaranteed speedup. [Exact speaking cues and clicks](docs/demo-script.md#interactive-request-replay-topic-6-centerpiece).
 
+## Deal Stress Test
+
+Calculated quotations now include a negotiation desk for discount, cost and exchange-rate scenarios, fee-aware recovery options, and real Redis MISS/HIT receipts. Previews leave saved quotations unchanged. [Walkthrough and implementation](docs/deal-stress-test.md).
+
 ## Assignment requirements and evidence
 
 Checked against the supplied *IMAP_Group_Project_Topics_BTech.docx*, Topic 6 and its submission notes.

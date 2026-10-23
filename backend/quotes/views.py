@@ -26,6 +26,7 @@ from .serializers import (
     ScenarioRequestSerializer,
     LabRequestSerializer,
     PlanRequestSerializer,
+    StressRequestSerializer,
 )
 from .services import evaluate, changed, CalculationConflict
 from .rates import RateError, lookup, key
@@ -274,6 +275,80 @@ class QuoteView(viewsets.ModelViewSet):
                 "input_version": q.version,
                 "rate_provenance": result["rate_provenance"],
                 "current_price": result["gross_price"],
+            }
+        )
+
+    @action(detail=True, methods=["post"])
+    def stress(self, request, pk=None):
+        import hashlib, uuid
+        from django.conf import settings
+        from .services import inputs
+        from .stress import stress
+
+        q = self.get_object()
+        serializer = StressRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if q.status == "archived":
+            raise ValidationError("Create a draft revision to stress test this quote.")
+        baseline = q.snapshot if q.status == "finalised" else q.last_calculation
+        if not baseline or (
+            q.status == "draft" and self.get_serializer(q).freshness(q)
+        ):
+            return Response(
+                {"detail": "Calculate the latest draft before stress testing."},
+                status=409,
+            )
+        if (
+            q.currency == q.home_currency
+            and serializer.validated_data["rate_change_percent"] != 0
+        ):
+            raise ValidationError(
+                "Exchange-rate changes require different home and billing currencies."
+            )
+        started = time.perf_counter()
+        data = inputs(q)
+        identity = json.dumps(
+            {
+                "version": "stress-v2",
+                "inputs": data,
+                "baseline": baseline,
+                "scenario": serializer.validated_data,
+            },
+            sort_keys=True,
+            default=str,
+        )
+        digest = hashlib.sha256(identity.encode()).hexdigest()
+        cache_key = f"qg:stress:{q.owner_id}:{q.id}:{q.version}:{digest}"
+        result = cache.get(cache_key)
+        hit = bool(result and result.get("hypothetical") and "minimum_price" in result)
+        written = False
+        if not hit:
+            try:
+                result = stress(data, baseline, **serializer.validated_data)
+            except ValueError as exc:
+                raise ValidationError(str(exc))
+            written = cache.set_value(cache_key, result, settings.CALC_TTL)
+        # Reject edits that arrived while the scenario was being evaluated.
+        if not Quote.objects.filter(
+            pk=q.pk, version=q.version, status=q.status
+        ).exists():
+            return Response(
+                {"detail": "Quotation changed. Reload and try again."}, status=409
+            )
+        return Response(
+            {
+                **result,
+                "input_version": q.version,
+                "rate_provenance": baseline["rate_provenance"],
+                "trace": {
+                    "request_id": uuid.uuid4().hex,
+                    "cache_key": cache_key,
+                    "decision": "hit" if hit else "miss",
+                    "cache_written": written,
+                    "provider_called": False,
+                    "calculation_executed": not hit,
+                    "duration_ms": round((time.perf_counter() - started) * 1000, 3),
+                },
             }
         )
 

@@ -203,3 +203,15 @@ class PlanRequestSerializer(serializers.Serializer):
     target_margin = serializers.DecimalField(
         max_digits=6, decimal_places=4, min_value=0, max_value=Decimal("0.9999")
     )
+
+
+class StressRequestSerializer(serializers.Serializer):
+    discount_percent = serializers.DecimalField(
+        max_digits=6, decimal_places=2, min_value=0, max_value=100, default=0
+    )
+    cost_increase_percent = serializers.DecimalField(
+        max_digits=6, decimal_places=2, min_value=0, max_value=100, default=0
+    )
+    rate_change_percent = serializers.DecimalField(
+        max_digits=6, decimal_places=2, min_value=-50, max_value=50, default=0
+    )
