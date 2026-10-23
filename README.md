@@ -34,6 +34,35 @@ Old keys become unreachable by the updated draft and expire through TTL; they ar
 
 Calculated quotations now include a negotiation desk for discount, cost and exchange-rate scenarios, fee-aware recovery options, and real Redis MISS/HIT receipts. Previews leave saved quotations unchanged. [Walkthrough and implementation](docs/deal-stress-test.md).
 
+```mermaid
+flowchart TD
+  Q["Calculated quote<br/>fresh draft or finalised snapshot"] --> S["Choose a scenario<br/>discount 0-100%, costs up 0-100%, FX -50% to +50%"]
+  S --> K{"Stress result in Redis?"}
+  K -- miss --> E["Run Decimal engine<br/>recorded rate, no API call"]
+  E --> C["Cache the result<br/>qg:stress:owner:quote:version:digest, TTL 15 min"]
+  C --> V
+  K -- hit --> V{"Quote unchanged?"}
+  V -- no --> X["HTTP 409<br/>reload and run again"]
+  V -- yes --> P["Margin protected<br/>target still met"]
+  V -- yes --> B["Below target<br/>profit, but under target"]
+  V -- yes --> L["Loss<br/>revenue below cost"]
+  B --> W["Find a workable deal<br/>two independent fixes"]
+  L --> W
+  W --> UP["Raise the price<br/>minimum price, rounded up"]
+  W --> DOWN["Cut the costs<br/>maximum budget, rounded down"]
+
+  classDef redis fill:#fdebe4,stroke:#e8643c,stroke-width:2px,color:#1a1a1a
+  classDef good fill:#e5f4e4,stroke:#2e9b3e,stroke-width:2px,color:#1a1a1a
+  classDef warn fill:#fdf3dc,stroke:#e0a400,stroke-width:2px,color:#1a1a1a
+  classDef bad fill:#fbebeb,stroke:#d0393e,stroke-width:2px,color:#1a1a1a
+  class K,C redis
+  class P good
+  class B warn
+  class L bad
+```
+
+Preview only: saved drafts and finalised snapshots never change.
+
 ## Assignment requirements and evidence
 
 Checked against the supplied *IMAP_Group_Project_Topics_BTech.docx*, Topic 6 and its submission notes.
@@ -66,6 +95,74 @@ flowchart LR
 ```
 
 Authoritative prices use Python Decimal, never frontend arithmetic. For cost C, margin m, fee fraction f, fixed fee F and exchange rate r (billing units per INR), the suggested billing amount is `(r*C/(1-m)+F)/(1-f)`, rounded upward to the currency's minor unit. Margin is profit divided by net revenue. Taxes are not calculated; reference rates are not settlement guarantees. Nonpositive revenue has an undefined margin.
+
+## Request flowchart
+
+A price is cached by version, recomputed on change and frozen at sign-off. Orange steps use Redis; blue is frozen in PostgreSQL.
+
+```mermaid
+flowchart TD
+  A["Edit the draft<br/>costs, margin, fees, currency"] --> B["Save in a transaction<br/>input version v becomes v+1"]
+  B --> D1{"Rate in Redis?"}
+  D1 -- miss --> R1["Take owned lock<br/>SET NX, 6 s lease"]
+  R1 --> R2["Fetch Frankfurter (ECB)<br/>one fetch, not a stampede"]
+  R2 --> R3["Store rate, new version<br/>TTL 1 hour"]
+  R3 --> D2
+  D1 -- hit --> D2{"Result in Redis?"}
+  D2 -- miss --> L1["Run Decimal formula<br/>round up, recompute margin"]
+  L1 --> L2["Cache the result<br/>TTL 15 minutes"]
+  L2 --> D3
+  D2 -- hit --> D3{"Versions unchanged?"}
+  D3 -- no --> E1["HTTP 409 conflict<br/>stale result rejected"]
+  E1 -. reload and edit again .-> A
+  D3 -- yes --> S1["Show price and margin<br/>plus scenarios and margin planner"]
+  S1 --> ST["Deal stress test<br/>what-if, qg:stress cache"]
+  S1 --> F1["Finalise: frozen snapshot<br/>PostgreSQL triggers, SHA-256"]
+  F1 --> F2["Export<br/>client PDF, internal CSV"]
+
+  classDef redis fill:#fdebe4,stroke:#e8643c,stroke-width:2px,color:#1a1a1a
+  classDef frozen fill:#e6f0fb,stroke:#2f74d0,stroke-width:2px,color:#1a1a1a
+  class D1,R1,R3,D2,L2,ST redis
+  class F1 frozen
+```
+
+Rate key: currency pair + date, for example `qg:rate:...:INR:USD:latest`. Calculation key: user, quote, input version, rate version, calculator version and input hash.
+
+## Cache invalidation, step by step
+
+A cost edit moves the draft to a new key, so the old answer is never served. Values come from the live rehearsal of 22 October 2026 (QG-0033 and QG-0032).
+
+```mermaid
+sequenceDiagram
+  participant B as Browser
+  participant A as Django API
+  participant P as PostgreSQL
+  participant R as Redis
+  Note over B,R: 1. Before the edit (input version v3)
+  B->>A: Calculate, cost INR 65,000
+  A->>R: GET calc key ...:v3:...
+  R-->>A: HIT, cached result returned
+  Note over B,R: 2. Edit the cost and save
+  B->>A: Save cost INR 72,000
+  A->>P: input version v3 to v4 (transaction)
+  P-->>A: committed
+  Note over B,R: 3. First calculation after the edit
+  B->>A: Calculate
+  A->>R: GET calc key ...:v4:...
+  R-->>A: MISS, new key, nothing cached
+  A->>A: compute price (Decimal)
+  A->>R: SET ...:v4:..., TTL 15 min
+  Note over B,R: 4. Calculate again
+  B->>A: Calculate
+  A->>R: GET calc key ...:v4:...
+  R-->>A: HIT, new price served
+  Note over B,R: 5. Open the finalised quote QG-0032
+  B->>A: Open finalised quote
+  A->>P: read frozen snapshot
+  P-->>A: USD 1,090.94, SHA-256 unchanged
+```
+
+The old v3 key is never read again; Redis TTL removes it later. Snapshot reads skip Redis and the rate API.
 
 ## Run locally
 
