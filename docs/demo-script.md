@@ -56,7 +56,7 @@ The reproducible local recorded setup and safety checks are in `testing.md`. A s
 | Why can cached calculations be slower? | Small Decimal calculations are cheap; serialization and a Redis round trip can cost more. Avoiding repeated external rate work is the stronger benefit. Show measured results honestly. |
 | Are scenarios or quoted profits guaranteed? | No. Scenarios are hypothetical, rates are references rather than settlement promises, fees are estimates, taxes are excluded and quoted profit is not received revenue. |
 | Why does finalisation survive rate refresh? | It stores the accepted calculation and quotation metadata in PostgreSQL, with database mutation guards. Redis is not the source of truth for the signed-off version. |
-| Where is Django admin? | It is not enabled. Demonstrate the product UI. Superuser session checks run in the isolated test database; no shared privileged account is published. |
+| Where is Django admin? | Open `/api/admin/` with a privately provisioned superuser. Create the account using `docker compose exec backend python manage.py createsuperuser`; credentials are never published. |
 
 Every member should rehearse the formula, one cache key, one race condition and one test. AI-assisted handoff files and commit attribution are not a substitute for comprehension or genuine contribution.
 

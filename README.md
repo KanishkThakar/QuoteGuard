@@ -240,7 +240,13 @@ For browser runs with zero live provider calls, use the recorded server setup in
 
 The cloud configuration rejects a development secret, DEBUG enabled, a missing persistent PostgreSQL URL, and a non-TLS Redis URL. HTTPS redirection, secure session/CSRF cookies, HSTS and clickjacking headers protect the deployed origin. PostgreSQL migrations and the idempotent synthetic seed run at deployment build time. Preview environments must have their own credentials and isolated data; do not connect an arbitrary preview to the demo database.
 
-Django's admin dashboard is not installed or routed. Superuser authentication is tested using temporary test-database accounts; no shared administrator password is exposed. The classroom presentation uses the product UI and its Cache Lab.
+Django admin is available at `/api/admin/` (locally, http://127.0.0.1:8780/api/admin/). Create your own administrator interactively in the database you intend to administer:
+
+```sh
+docker compose exec backend python manage.py createsuperuser
+```
+
+The account is stored in PostgreSQL, not GitHub. Never commit its password or a database dump. Each deployment needs its own account. Change an existing password with `docker compose exec backend python manage.py changepassword USERNAME`. The Docker image collects admin static assets and serves them through WhiteNoise under `/api/static/`. Superuser product API sessions retain owner isolation; the admin dashboard manages Django users and groups.
 
 ## Primary sources
 

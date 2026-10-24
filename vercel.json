@@ -16,7 +16,7 @@
       "root": ".",
       "framework": "django",
       "entrypoint": "backend.config.wsgi:application",
-      "buildCommand": "python backend/manage.py migrate --noinput && python backend/manage.py seed_demo"
+      "buildCommand": "python backend/manage.py collectstatic --noinput && python backend/manage.py migrate --noinput && python backend/manage.py seed_demo"
     }
   },
   "rewrites": [

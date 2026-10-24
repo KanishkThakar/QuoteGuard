@@ -17,6 +17,8 @@ for host in (os.environ.get("VERCEL_URL"), os.environ.get("VERCEL_PROJECT_PRODUC
     if host and host not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(host)
 INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.messages",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -26,11 +28,13 @@ INSTALLED_APPS = [
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
 ]
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
@@ -93,5 +97,17 @@ SECURE_SSL_REDIRECT = ON_VERCEL
 SECURE_HSTS_SECONDS = 31536000 if ON_VERCEL else 0
 X_FRAME_OPTIONS = "DENY"
 CSRF_TRUSTED_ORIGINS = [x for x in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",") if x]
-STATIC_URL = "/static/"
+STATIC_URL = "/api/static/"
 STATIC_ROOT = Path(__file__).resolve().parents[2] / "staticfiles"
+
+# Keep admin and its assets under the existing backend proxy prefix.
+TEMPLATES = [{
+    "BACKEND": "django.template.backends.django.DjangoTemplates",
+    "DIRS": [],
+    "APP_DIRS": True,
+    "OPTIONS": {"context_processors": [
+        "django.template.context_processors.request",
+        "django.contrib.auth.context_processors.auth",
+        "django.contrib.messages.context_processors.messages",
+    ]},
+}]
